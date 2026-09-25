@@ -51,24 +51,53 @@ void main(){
   }
   print(' o resultado da soma de 1 ate 1000 e : $calculars \n');
 
-   print('================================');
+
+
+  print('============== programa que percorra os números de 1 até 100 e: Se o número for múltiplo de 3, ');
+  print("  mostre múltiplo de 3; Se for múltiplo de 5, mostre múltiplo de 5  Caso contrário, mostre o próprio número \n ================== ");
   
-  
+  for (int num = 1; num <= 100; num++) {
 
 
+    if(num % 3 == 0 && num % 5 == 0){
+      print('$num multiplo do numnero 3 e do 5 .');
+    }
 
 
+    else if (num % 3 == 0) {
+      print('$num é múltiplo de 3');
+    } else if (num % 5 == 0) {
+       print('$num é múltiplo de 5');
+    } else {
+      print(num);
+    }
+  }
+
+  print('================================');
+
+  for( var nota in notas){
+    print("o valor da nota $nota");
+  }
+
+ 
+
+print('============= Considere as temperaturas de um processador (CPU): var temperaturas = [45, 52, 68, 75, 81, 59]; =================== \n');
 
 
+  var temperaturas = [45, 52, 68, 75, 81, 59];
 
+  for (var temperatura in temperaturas){
 
+    if (temperatura <= 59) {
+      print("$temperatura°C - Normal");
+    } else if ((temperatura >= 60) && (temperatura <= 74)){
+      print("$temperatura°C - Anteção");
+    } else{
+      print("$temperatura°C - Temperatura Elevada");
+    }
+  }  
 
-
-
-
-
-
-
+ print('================================ \n');
 
 
 
