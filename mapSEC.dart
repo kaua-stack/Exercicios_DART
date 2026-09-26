@@ -38,7 +38,6 @@ void main (){
 
   
   print(contatos);
-
   print('================================ \n');
 
   print(contatos['Kaua']?['cidade']);
@@ -49,7 +48,7 @@ void main (){
   for(var nome in contatos.keys){
     print('nome da pessoa $nome \n');
   };
-
+  
   print('================================\n');
 
   print(contatos['Adenilson']?['telefone']);
@@ -59,10 +58,22 @@ void main (){
   print('cidade: ${contatos['Kaua']?['telefone']}');
   print('cidade: ${contatos['Kaua']?['cidade']}');
 
+  print('================================\n');
+
+  var exemplo = contatos['Kaua']!;
+  var telefones = exemplo['telefone'] as List;
+  var indice = 1;
+
+  for (var telefone in telefones){
+    print('telefone $indice : $telefone');
+    indice++;
+  }
+  print('cidade: ${exemplo['cidade']}');
+
+  print('================================\n');
+
   
 
 
-
-  
 
 }
