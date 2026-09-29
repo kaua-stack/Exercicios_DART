@@ -1,35 +1,49 @@
 import 'dart:io';
 
-void main( ){
-  print("digite um numero de 1 ate 7 para saber o dia da semana");
-  var numero = int.parse(stdin.readLineSync()!);
+void main() {
 
-  switch(numero){
-    case 1 :
-      print('domingo');
-    break;
-    case 2 :
-      print('segunda');
-    break;
-    case 3 :
-      print('terça');
-    break;
-    case 4 :
-      print('quarta');
-    break;
-    case 5 :
-      print('quinta');
-    break;
-    case 6 :
-      print('sexta');
-    break;
-    case 7 :
-      print('sabado');
-    break;
 
-    default:
-    print('numero invalido');
+  print("Digite um número de 1 até 7 para saber o dia da semana");
+  
+  String? entrada = stdin.readLineSync();
+
+
+  while (int.tryParse(entrada!) == null) {
+    print('Apenas números: IMBECIL'); entrada = stdin.readLineSync();
   }
 
+  int numero = int.parse(entrada);
 
+  switch (numero) {
+    case 1:
+      print('Domingo');
+      break;
+
+    case 2:
+      print('Segunda');
+      break;
+
+    case 3:
+      print('Terça');
+      break;
+
+    case 4:
+      print('Quarta');
+      break;
+
+    case 5:
+      print('Quinta');
+      break;
+
+    case 6:
+      print('Sexta');
+      break;
+
+    case 7:
+      print('Sábado');
+      break;
+
+    default:
+      print('Número inválido');
+  }
 }
