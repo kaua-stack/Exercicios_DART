@@ -1,24 +1,14 @@
-import 'dart:io';
-
 void main() {
+  String cpf = "529.982.247-25";
 
-  print('Digite o CPF:');
-  String cpf = stdin.readLineSync()!;
-
-  while (cpf.length > 11) {
-    print('O CPF deve ter no máximo 11 números. Digite novamente:');
-    cpf = stdin.readLineSync()!;
-
-    if (validarCPF(cpf)) {
-      print("CPF válido!");
-    } else {
-      print("CPF inválido!");
-    }
+  if (validarCPF(cpf)) {
+    print("CPF válido!");
+  } else {
+    print("CPF inválido!");
   }
 }
 
 bool validarCPF(String cpf) {
-
   // Remove pontos e hífen
   cpf = cpf.replaceAll('.', '').replaceAll('-', '');
 
@@ -27,7 +17,14 @@ bool validarCPF(String cpf) {
     return false;
   }
 
-  // Rejeita CPFs com todos os números iguais
+  // Verifica se todos os caracteres são números
+  for (int i = 0; i < cpf.length; i++) {
+    if (int.tryParse(cpf[i]) == null) {
+      return false;
+    }
+  }
+
+  // Rejeita CPF com todos os números iguais
   bool todosIguais = true;
 
   for (int i = 1; i < cpf.length; i++) {
@@ -41,47 +38,39 @@ bool validarCPF(String cpf) {
     return false;
   }
 
+  // Calcula o primeiro dígito
+  int primeiroDigito = calcularDigito(cpf, 9, 10);
 
-  // Primeiro dígito
+  // Junta os 9 números com o primeiro dígito
+  String cpfCalculado = cpf.substring(0, 9) + primeiroDigito.toString();
 
+  // Calcula o segundo dígito
+  int segundoDigito = calcularDigito(cpfCalculado, 10, 11);
+
+  // Monta o CPF completo calculado
+  cpfCalculado += segundoDigito.toString();
+
+  // Compara o CPF inteiro
+  return cpf == cpfCalculado;
+}
+
+int calcularDigito(String cpf, int quantidade, int pesoInicial) {
   int soma = 0;
-  int total = 10;
 
-  for (int i = 0; i < 9; i++) {
-    soma += int.parse(cpf[i]) * total;
-    total--;
+  for (int i = 0; i < quantidade; i++) {
+    int numero = int.parse(cpf[i]);
+    int peso = pesoInicial - i;
+
+    soma += numero * peso;
   }
 
   int resto = soma % 11;
-  int digito1 = 11 - resto;
+  int digito = 11 - resto;
 
-  if (digito1 == 10 || digito1 == 11) {
-    digito1 = 0;
+  if (digito == 10 || digito == 11) {
+    digito = 0;
   }
 
-
-  // Segundo dígito
-
-  soma = 0;
-  total = 11;
-
-  for (int i = 0; i < 10; i++) {
-    soma += int.parse(cpf[i]) * total;
-    total--;
-  }
-
-  resto = soma % 11;
-  int digito2 = 11 - resto;
-
-  if (digito2 == 10 || digito2 == 11) {
-    digito2 = 0;
-  }
-
-  // Compara os dígitos calculados
-  if (digito1 == int.parse(cpf[9]) &&
-      digito2 == int.parse(cpf[10])) {
-    return true;
-  }
-
-  return false;
+  return digito;
 }
+ 
