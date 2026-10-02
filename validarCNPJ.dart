@@ -44,7 +44,7 @@ bool validarCnpj(String cnpj) {
   int digito1 = calcularPrimeiroDigito(cnpj);
 
   // Calcula o segundo dígito verificador
-  int digito2 = calcularSegundoDigito(cnpj, digito1);
+  int digito2 = calcularSegundoDig(cnpj, digito1);
 
   // Compara com os dígitos informados
   return digito1 == int.parse(cnpj[12]) &&
@@ -71,7 +71,7 @@ int calcularPrimeiroDigito(String cnpj) {
   return 11 - resto;
 }
 
-int calcularSegundoDigito(String cnpj, int primeiroDigito) {
+int calcularSegundoDig(String cnpj, int primeiroDigito) {
   List<int> pesos = [
    6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2
   ];
