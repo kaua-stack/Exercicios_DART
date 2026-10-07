@@ -1,6 +1,12 @@
 void main() {
   String cnpj = "04.252.011/0001-10";
 
+   // Remove caracteres de formatação
+  cnpj = cnpj.replaceAll('.', '');
+  cnpj = cnpj.replaceAll('/', '');
+  cnpj = cnpj.replaceAll('-', '');
+
+
   if (validarCnpj(cnpj)) {
     print("CNPJ válido!");
   } else {
@@ -9,11 +15,7 @@ void main() {
 }
 
 bool validarCnpj(String cnpj) {
-  // Remove caracteres de formatação
-  cnpj = cnpj.replaceAll('.', '');
-  cnpj = cnpj.replaceAll('/', '');
-  cnpj = cnpj.replaceAll('-', '');
-
+ 
   // Deve possuir 14 dígitos
   if (cnpj.length != 14) {
     return false;
@@ -25,6 +27,7 @@ bool validarCnpj(String cnpj) {
       return false;
     }
   }
+
 
   // Rejeita CNPJs com todos os números iguais
   bool todosIguais = true;
@@ -79,7 +82,7 @@ int calcularSegundoDig(String cnpj, int primeiroDigito) {
   String cnpjBase = cnpj.substring(0, 12) + primeiroDigito.toString();
 
   int soma = 0;
-
+ 
   for (int i = 0; i < 13; i++) {
     soma += int.parse(cnpjBase[i]) * pesos[i];
   }
