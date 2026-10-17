@@ -36,6 +36,7 @@ class MaquinaVendas {
 
   // Alterar o preço do produto
   void alterarPreco(double novoPreco) {
+    
     preco = novoPreco;
 
     print('Preço atualizado para R\$ $preco');
@@ -51,3 +52,50 @@ class MaquinaVendas {
   }
 }
 
+
+class GerenciarMaquinas {
+  // Lista que armazena todas as máquinas cadastradas
+  final List<MaquinaVendas> maquinas = [];
+
+  // CREATE (Cadastrar)
+  // Adiciona uma nova máquina na lista
+  void cadastrar(MaquinaVendas maquina) {
+    maquinas.add(maquina);
+
+    print('Máquina de ${maquina.produto} cadastrada com sucesso!');
+  }
+
+  // READ (Listar)
+  // Exibe todas as máquinas cadastradas
+  void listar() {
+    for (int i = 0; i < maquinas.length; i++) {
+      print('\nMáquina ${i + 1}');
+
+      // Chama o relatório da máquina
+      maquinas[i].exibirRelatorio();
+    }
+  }
+
+  // READ (Consultar)
+  // Exibe os dados de uma máquina específica
+  void consultar(MaquinaVendas maquina) {
+    maquina.exibirRelatorio();
+  }
+
+  // UPDATE (Atualizar)
+  // Altera o preço de uma máquina através do índice
+  void atualizarPreco(int indice, double novoPreco) {
+    // Acessa a máquina desejada e altera o preço
+    maquinas[indice].alterarPreco(novoPreco);
+
+    print('Preço atualizado com sucesso!');
+  }
+
+  // DELETE (Excluir)
+  // Remove uma máquina da lista
+  void remover(int indice) {
+    print('Máquina de ${maquinas[indice].produto} removida.');
+
+    maquinas.removeAt(indice);
+  }
+}
